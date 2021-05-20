@@ -13,6 +13,12 @@ import java.util.List;
  */
 public class BillDao extends BasicDao<Bill> {
 
+    /**
+     *
+     * @param sql sql
+     * @param parameters 可变参数
+     * @return 返回某个桌子所有账单的集合 用来结账 只需money列 所以用的 new ColumnListHandler<>()
+     */
     public List<?> getMoneyColumn(String sql,Object...parameters)  {
     try {
         return getRunner().query(sql,new ColumnListHandler<>(),parameters);
