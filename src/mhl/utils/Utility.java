@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 /**
  * @author 18190
+ * 输入的工具类
  */
 public class Utility {
     private final static Scanner in = new Scanner(System.in);
