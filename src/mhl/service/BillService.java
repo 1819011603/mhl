@@ -24,7 +24,17 @@ public class BillService {
     private MultiTableDao multiTableDao = new MultiTableDao();
 
 
+    /**
+     *
+     * @param menuId 菜id
+     * @param num 菜数
+     * @param diningTableId 桌子的id
+     * @return 增加一个菜的账单
+     */
     public boolean orderMenu(Integer menuId,Integer num,Integer diningTableId){
+        /**
+         * 为每一个订单生成一个UUID
+         */
         String billID = UUID.randomUUID().toString();
         Double money = menuService.getMenuById(menuId).getPrice() * num;
         Integer rows = billDao.update("insert into bill values(null,?,?,?,?,?,now(),'未结账')",billID,menuId,num,money,diningTableId);
@@ -32,6 +42,10 @@ public class BillService {
         return diningTableService.orderToDining(diningTableId);
     }
 
+    /**
+     * 多表查询
+     * @return 返回多表MultiTableBean的List
+     */
     public List<MultiTableBean> getList(){
         return (List<MultiTableBean>) multiTableDao.queryMulti("select bill.*,name,price from bill,menu where bill.menuId= menu.id",MultiTableBean.class);
     }
@@ -39,6 +53,11 @@ public class BillService {
         return billDao.update("update bill set state=? where diningTableId=? and state=?",state,diningTableId,"未结账") > 0;
     }
 
+    /**
+     *
+     * @param diningTableId 桌子id
+     * @return 该桌子的总花费
+     */
     public Double total(Integer diningTableId) {
         List<Double> list = (List<Double>) billDao.getMoneyColumn("select money from bill where diningTableId=? and state = ?",diningTableId,"未结账");
         Double t= 0.0;

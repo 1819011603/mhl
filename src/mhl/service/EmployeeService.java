@@ -10,6 +10,13 @@ import mhl.javaBean.Employee;
  */
 public class EmployeeService {
     EmployeeDao employeeDao = new EmployeeDao();
+
+    /**
+     *
+     * @param id 雇员登录id
+     * @param pwd 雇员密码
+     * @return 返回是否有该雇员
+     */
     public Employee checkEmployeeIdAndPassword(String id,String pwd){
         return employeeDao.querySingle("select * from employee where empId=? and pwd=md5(?)",Employee.class,id,pwd);
 
