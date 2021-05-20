@@ -14,6 +14,13 @@ public class DiningTable {
     public DiningTable() {
     }
 
+    /**
+     *
+     * @param id 桌号id
+     * @param state 桌子的使用状态 空闲、已预约、就餐中三个状态。
+     * @param orderName 预约用户名字
+     * @param orderTel 预约用户的电话号码
+     */
     public DiningTable(Integer id, String state, String orderName, String orderTel) {
         this.id = id;
         this.state = state;
