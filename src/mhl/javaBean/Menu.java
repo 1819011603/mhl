@@ -15,6 +15,13 @@ public class Menu {
     public Menu() {
     }
 
+    /**
+     *
+     * @param id 菜的id
+     * @param name 菜名
+     * @param type 菜的类型 主食、热菜、冷菜、汤、甜品等
+     * @param price 菜的单价
+     */
     public Menu(Integer id, String name, String type, Double price) {
         this.id = id;
         this.name = name;
