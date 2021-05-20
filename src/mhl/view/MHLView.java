@@ -19,6 +19,9 @@ import java.util.List;
 public class MHLView {
     private boolean loop = true;
     private String key = "";
+    /**
+     * 表的service服务 需要service对象
+     */
     private EmployeeService employeeService = new EmployeeService();
     private DiningTableService diningTableService = new DiningTableService();
     private MenuService menuService = new MenuService();
@@ -27,6 +30,9 @@ public class MHLView {
         new MHLView().testMHL();
     }
 
+    /**
+     * 主程序
+     */
     public void testMHL(){
 
         while (loop){
@@ -44,6 +50,15 @@ public class MHLView {
                         while (loop){
                             print2();
                             key = Utility.readString(1);
+                            /**
+                             *      1. 显示餐桌状态
+                             * 		2. 预定餐桌
+                             * 		3.显示所有菜品
+                             * 		4.点单服务
+                             * 		5.查看账单
+                             * 		6.结账
+                             * 		9.退出满汉楼
+                             */
                             switch (key){
                                 case "1":
                                     displayDiningTable();
@@ -90,6 +105,10 @@ public class MHLView {
         System.out.println("退出满汉楼");
 
     }
+
+    /**
+     * 结账
+     */
     public void checkOutBills(){
         while (true){
             System.out.println("===============结账服务===================");
@@ -149,6 +168,9 @@ public class MHLView {
     }
 
 
+    /**
+     * 点餐服务
+     */
     public void orderMenu(){
         System.out.println("=============点餐服务===============");
         boolean bill = false;
@@ -205,6 +227,9 @@ public class MHLView {
         }
     }
 
+    /**
+     * 显示所有订单
+     */
     @SuppressWarnings("unchecked")
     public void displayBills(){
         System.out.println("\n编号\t\t菜品号\t菜品名\t\t菜品价格\t\t菜品量\t\t金额\t\t桌号\t\t日期\t\t\t\t状态");
@@ -214,6 +239,7 @@ public class MHLView {
         }
         System.out.println("==========显示完毕============");
     }
+
 
     public void print1(){
         System.out.println("=============满汉楼===============");
@@ -233,6 +259,10 @@ public class MHLView {
                 "\t\t9.退出满汉楼");
         System.out.print("请输入你的选择： ");
     }
+
+    /**
+     * 显示所有餐桌
+     */
     public void displayDiningTable(){
         List<DiningTable> list =diningTableService.getTables();
         System.out.println("菜单编号\t餐桌状态\t");
@@ -241,6 +271,10 @@ public class MHLView {
         }
         System.out.println("=============显示完毕=================");
     }
+
+    /**
+     * 预定餐桌
+     */
     public void orderTable(){
         System.out.println("==============预定餐桌============");
         while (true){
@@ -282,6 +316,9 @@ public class MHLView {
         }
     }
 
+    /**
+     * 显示所有菜
+     */
     public void displayMenu(){
         List<Menu> list = menuService.getMenu();
         System.out.println("\n菜品编号\t菜品名\t类别\t\t价格");
