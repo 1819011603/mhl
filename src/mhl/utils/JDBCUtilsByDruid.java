@@ -7,8 +7,10 @@ import java.io.FileInputStream;
 import java.sql.*;
 import java.util.Properties;
 
+// 与数据库的工具类
 public class JDBCUtilsByDruid {
     private static DataSource ds;
+    // 实现事务
     private static ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
     private static Connection connection;
     public static DataSource getDs() {
